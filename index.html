@@ -6,15 +6,25 @@
     <title>Loctd</title>
     <link rel="stylesheet" href="./src/style/style.css">
     <link rel="stylesheet" href="./src/main.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
     <div class="app">
         <h1 class="app-title">Video-app</h1>
         <div class="app-button">
-            <button class="button-video app-button__play">Play</button>
-            <button class="button-video app-button__pause">Pause</button>
+            <button class="button-video app-button__prev">
+                <i class="fa fa-backward"></i>
+            </button>
+            <button class="button-video app-button__controls">
+                <i class="fa fa-play"></i>
+            </button>
+            <button class="button-video app-button__next">
+                <i class="fa fa fa-forward"></i>
+            </button>
         </div>
-        <video class="app-video" src="./src/video/video-1.mp4"></video>
+        <div class="app-video-wrap">
+            <video class="app-video" src="./src/video/video-1.mp4"></video>
+        </div>
     </div>
 </body>
 
