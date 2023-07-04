@@ -1,7 +1,24 @@
+html {
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  font-family: Plus Jakarta Sans;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: inherit;
+       box-sizing: inherit;
+}
+
 .App {
   text-align: center;
 }
 
+//------Header------
 .Header {
   display: flex;
   justify-content: space-between;
@@ -73,6 +90,34 @@
     }
   }
   
+}
+
+//------Footer------
+.Footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 40px 0;
+  text-align: center;
+  background:#252427;
+  color: white;
+
+  &-title {
+    margin: 12px 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    color:#DACCFF;
+  }
+
+  &-text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #FFF;
+  }
 }
 
 

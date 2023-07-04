@@ -1,7 +1,10 @@
 
 function Footer () {
     return (
-        <div className="footer">Footer</div>
+        <div className="Footer">
+            <h1 className="Footer-title">Komiq</h1>
+            <p className="Footer-text">Ⓒ 2022 komiq.com</p>
+        </div>
     )
 }
 
