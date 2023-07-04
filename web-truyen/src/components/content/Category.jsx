@@ -1,6 +1,6 @@
 function Category () {
     return (
-        <div>Category</div>
+        <div>This is Category</div>
     )
 }
 

@@ -1,0 +1,40 @@
+html {
+    -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    font-family: Plus Jakarta Sans;
+    font-style: normal;
+}
+
+body,h1,h2,h3, p {
+    margin: 0;
+}
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: inherit;
+        box-sizing: inherit;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-decoration: none;
+    border-radius: 44px;
+    border: 1px solid #252427;
+    background:#FFF;
+    
+    color: #252427;
+}
+.btn-primary:hover {
+    box-shadow: 4px 4px 0px 0px #252427;
+    transition: box-shadow .1s;
+}
+
+//---------Swiper---------
+.swiper-slide {
+    width: fit-content !important;
+}

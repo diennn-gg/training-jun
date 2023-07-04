@@ -1,4 +1,4 @@
-import logo from '../image/app-logo.jpg';
+import logo from '../images/app-logo.jpg';
 
 function Header () {
     return (

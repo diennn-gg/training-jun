@@ -1,0 +1,87 @@
+//------Banner-----
+.banner {
+    padding: 32px 0;
+    background: #DACCFF;
+  
+    &-head {
+      
+      &__title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        h2 {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 30px;
+          margin-left: 12px;
+        }
+      }
+  
+      &__link {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+  
+        margin-top: 16px;
+      }
+    }
+  
+    &-list {
+      margin: 24px  0;
+      .card {
+        border-radius: 8px;
+        border: 1px solid#252427;
+        background:#FFF;
+        padding: 24px 28px;
+        text-align: center;
+  
+        &-top {
+          margin: 0 auto 8px;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 18px;
+          width: fit-content;
+          padding: 8px 12px;
+          border-radius: 44px;
+          border: 1px solid #252427;
+          background:#EAFA34;
+          color:#252427;
+        }
+  
+        &-info {
+          margin-top: 8px;
+          text-align: left;
+          width: 100%;
+          &__name {
+            color:#252427;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+          }
+  
+          &__view {
+            display: flex;
+            align-items: flex-end;
+            margin: 12px 0 8px;
+            color:#797979;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 18px;
+  
+            svg {
+              margin-left: 4px;
+            }
+          }
+  
+          &__chapter {
+            color:#252427;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 18px;
+          }
+        }
+      }
+    }
+  
+}
