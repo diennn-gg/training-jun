@@ -1,10 +1,11 @@
+@import './variables';
 //------Header------
 .Header {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border-bottom: 2px solid #252427;
-    background: #FFF;
+    border-bottom: 2px solid $text-primary;
+    background: $white-color;
   
     &-logo {
       
@@ -20,7 +21,7 @@
         width: 552px;
         padding: 10px 48px;
         border-radius: 8px;
-        border: 1px solid #000;
+        border: 1px solid $black-color;
         outline: none;
         margin: 14px 0;
       }
@@ -49,10 +50,10 @@
       align-items: center;
     
       padding: 12px;
-      background: #252427;
+      background: $text-primary;
   
       a {
-        color: #EAFA34;
+        color: $yellow-color;
         text-decoration: none;
       }
       
@@ -66,7 +67,7 @@
         content: "/";
         top: 0;
         left: -10px;
-        color: #EAFA34;
+        color: $yellow-color;
       }
     }
     
