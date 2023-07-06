@@ -5,7 +5,7 @@ html {
     font-style: normal;
 }
 
-body,h1,h2,h3, p {
+body, h1, h2, h3, p {
     margin: 0;
 }
 
@@ -29,12 +29,35 @@ body,h1,h2,h3, p {
     
     color: #252427;
 }
+.btn-primary.active,
 .btn-primary:hover {
     box-shadow: 4px 4px 0px 0px #252427;
     transition: box-shadow .1s;
 }
 
 //---------Swiper---------
-.swiper-slide {
-    width: fit-content !important;
+.swiper {
+    &-button-prev,
+    &-button-next {
+        display: none;
+    }
+    &-pagination {
+        position: static;
+        margin-top: 34px;
+
+        &-bullet {
+            width: 8px;
+            background: #FFF;
+            opacity: unset;
+            
+            &-active {
+                opacity: unset;
+                background: #EAFA34;
+            }
+        }
+    }
+    &-horizontal > &-pagination-bullets &-pagination-bullet, 
+    &-pagination-horizontal &-pagination-bullets &-pagination-bullet {
+        margin: 0 16px;
+    }
 }

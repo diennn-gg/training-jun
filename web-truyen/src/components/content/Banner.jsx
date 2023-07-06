@@ -1,18 +1,17 @@
-import React from 'react';
+import { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
-
 import CardBanner from '../card/CardBanner';
+import { ReactComponent as SvgArrowButton} from '../../images/arrow-button-slide.svg'
+import { topMonth } from '../../data/data';
 
 function Banner () {
+    const btnPrev = useRef();
+    const btnNext = useRef();
+
     return (
         <div className="banner">
-            <div className="banner-container">
+            <div className="container">
                 <div className="banner-head">
                     <div className="banner-head__title">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,10 +29,10 @@ function Banner () {
                                 </clipPath>
                             </defs>
                         </svg>
-                        <h2>Bảng xếp hạng</h2>
+                        <span className="banner-head__title-text">Bảng xếp hạng</span>
                     </div>
                     <div className="banner-head__link">
-                        <a className="btn-primary" href="/#">Top Tháng</a>
+                        <a className="btn-primary active" href="/#">Top Tháng</a>
                         <a className="btn-primary" href="/#">Top Tuần</a>
                         <a className="btn-primary" href="/#">Top Ngày</a>
                     </div>
@@ -42,25 +41,36 @@ function Banner () {
                     <Swiper
                         className="mySwiper"
                         slidesPerView={5}
-                        spaceBetween={30}
+                        slidesPerGroup={5}
+                        spaceBetween={12}
                         loop={true}
                         pagination={{
-                        clickable: true,
+                            clickable: true,
                         }}
                         navigation={{
                             clickable: true,
+                            prevEl: btnPrev.current,
+                            nextEl: btnNext.current,
                         }}
+                        onBeforeInit={(swiper) => {
+                            swiper.params.navigation.prevEl = btnPrev.current;
+                            swiper.params.navigation.nextEl = btnNext.current;
+                       }}
                         modules={[Pagination, Navigation]}
                     >
-                        <SwiperSlide><CardBanner/></SwiperSlide>
-                        <SwiperSlide><CardBanner/></SwiperSlide>
-                        <SwiperSlide><CardBanner/></SwiperSlide>
-                        <SwiperSlide><CardBanner/></SwiperSlide>
-                        <SwiperSlide><CardBanner/></SwiperSlide>
-                        <SwiperSlide><CardBanner/></SwiperSlide>
-                        <SwiperSlide><CardBanner/></SwiperSlide>
-                        <SwiperSlide><CardBanner/></SwiperSlide>
+                        {
+                            topMonth.map( (story, index) => (
+                                <SwiperSlide key={index}><CardBanner story={story}/></SwiperSlide>
+                            ))
+                        }
                     </Swiper>
+
+                    <div className="banner-list-btn-prev" ref={btnPrev}>
+                        <SvgArrowButton/>
+                    </div>
+                    <div className="banner-list-btn-next" ref={btnNext}>
+                        <SvgArrowButton/>
+                    </div>
                 </div>
             </div>
         </div>

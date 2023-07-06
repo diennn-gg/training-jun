@@ -1,25 +1,25 @@
 //------Footer------
 .Footer {
-    width: 100%;
-    padding: 40px 0;
-    text-align: center;
-    background:#252427;
-    color: white;
-  
-    &-title {
-      margin: 12px 0;
-      font-size: 40px;
-      font-weight: 700;
-      line-height: 60px;
-      cursor: default;
-      color:#DACCFF;
-    }
-  
-    &-text {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 20px;
-      color: #FFF;
-    }
+  width: 100%;
+  padding: 40px 0;
+  text-align: center;
+  background: $text-primary;
+  color: $white-color;
+
+  &-title {
+    margin: 12px 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    cursor: default;
+    color: $purple-color;
+  }
+
+  &-text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: $white-color;
+  }
 }
