@@ -1,6 +1,4 @@
 html {
-    -moz-box-sizing: border-box;
-        box-sizing: border-box;
     font-family: Plus Jakarta Sans;
     font-style: normal;
 }
@@ -12,8 +10,8 @@ body, h1, h2, h3, p {
 *, *:before, *:after {
     margin: 0;
     padding: 0;
-    -moz-box-sizing: inherit;
-        box-sizing: inherit;
+    -moz-box-sizing: border-box;
+        box-sizing: border-box;
 }
 
 .btn-primary {
@@ -24,15 +22,21 @@ body, h1, h2, h3, p {
     line-height: 20px;
     text-decoration: none;
     border-radius: 44px;
-    border: 1px solid #252427;
-    background:#FFF;
+    border: $border-primary;
+    background: $white-color;
     
-    color: #252427;
+    color: $text-primary;
 }
 .btn-primary.active,
 .btn-primary:hover {
-    box-shadow: 4px 4px 0px 0px #252427;
+    box-shadow: $box-shadow;
     transition: box-shadow .1s;
+}
+
+.card {
+    border-radius: 8px;
+    border: $border-primary;
+    background: $white-color;
 }
 
 //---------Swiper---------
@@ -47,12 +51,12 @@ body, h1, h2, h3, p {
 
         &-bullet {
             width: 8px;
-            background: #FFF;
+            background: $white-color;
             opacity: unset;
             
             &-active {
                 opacity: unset;
-                background: #EAFA34;
+                background: $yellow-color;
             }
         }
     }
@@ -60,4 +64,15 @@ body, h1, h2, h3, p {
     &-pagination-horizontal &-pagination-bullets &-pagination-bullet {
         margin: 0 16px;
     }
+}
+
+//---------Scroll Button---------
+.scroll-button {
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    padding: 10px 12px;
+    border-radius: 48px;
+    cursor: pointer;
+    background: var(--text-primary, #252427);
 }
