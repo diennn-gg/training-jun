@@ -1,74 +1,161 @@
-@import './variables';
+@import "./variables";
 //------Header------
 .Header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 2px solid $text-primary;
+  background: $white-color;
+
+  &-logo > * {
+    padding: 12px;
+    cursor: pointer;
+  }
+  &-search {
+    position: relative;
+
+    @include mobile {
+      display: none;
+    }
+  }
+  &-button {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-bottom: 2px solid $text-primary;
-    background: $white-color;
-  
-    &-logo {
-      
-      img {
-        padding: 12px;
-        cursor: pointer;
-      }
+    align-items: center;
+    padding: 12px;
+    background: $text-primary;
+
+    &__link {
+      color: $yellow-color;
+      text-decoration: none;
     }
-    &-search {
+
+    &__link:last-child {
       position: relative;
-  
-      input {
-        width: 552px;
-        padding: 10px 48px;
-        border-radius: 8px;
-        border: 1px solid $black-color;
-        outline: none;
-        margin: 14px 0;
+      margin-left: 12px;
+    }
+
+    &__link:last-child::before {
+      position: absolute;
+      content: "/";
+      top: 0;
+      left: -10px;
+      color: $yellow-color;
+    }
+    @include mobile {
+      display: none;
+    }
+  }
+  & .hamburger-menu {
+    padding: 0px 12px;
+    display: none;
+
+    &__toggle {
+      opacity: 0;
+
+      &:checked + .hamburger-menu__btn > * {
+        transform: rotate(45deg);
+        &::before {
+          top: 0;
+          transform: rotate(0deg);
+        }
+        &::after {
+          top: 0;
+          transform: rotate(90deg);
+        }
       }
-      button[type="submit"] {
-        position: absolute;
-        top: 50%;
-        transform: translate(0, -50%);
-        text-indent: -999px;
-        overflow: hidden;
-        width: 48px;
-        height: 38px;
-        padding: 0;
-        margin: 0;
-        border: 1px solid transparent;
-        border-radius: inherit;
-        background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
-        cursor: pointer;
-        opacity: 0.7;
+      &:checked ~ .hamburger-menu__box {
+        right: 0;
+        transition-duration: 0.5s;
       }
-      button[type="submit"]:hover {
+      &:checked ~ .overlay {
         opacity: 1;
+        height: auto;
       }
     }
-    &-button {
-      display: flex;
-      align-items: center;
-    
-      padding: 12px;
-      background: $text-primary;
-  
-      a {
-        color: $yellow-color;
-        text-decoration: none;
+    &__btn {
+      position: relative;
+      display: block;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      z-index: 10;
+      & > * {
+        top: 50%;
       }
-      
-      a:last-child {
-        position: relative;
-        margin-left: 12px;
-      }
-      
-      a:last-child::before {
+      & > *,
+      & > *::before,
+      & > *::after {
+        display: block;
         position: absolute;
-        content: "/";
-        top: 0;
-        left: -10px;
-        color: $yellow-color;
+        width: 22px;
+        height: 2px;
+        background-color: $text-primary;
+        transition-duration: 0.25s;
+      }
+      & > *::before {
+        content: "";
+        top: -8px;
+      }
+      & > *::after {
+        content: "";
+        top: 8px;
       }
     }
-    
+    &__box {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 300px;
+      height: 100%;
+      margin: 0;
+      z-index: 9;
+      padding: 54px 0;
+      list-style: none;
+      background-color: $white-color;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+      transition-duration: 0.5s;
+
+      & .search__input {
+        width: 100%;
+        margin: 0;
+        padding-right: 10px;
+      }
+
+      & > * {
+        padding: 12px 24px;
+
+        &:hover:not(:first-child) {
+          background-color: $purple-color;
+        }
+      }
+
+      & .menu__item {
+        display: block;
+        color: $text-primary;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        transition-duration: 0.25s;
+      }
+    }
+
+    & .overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      z-index: 9;
+      background-color: rgba(0, 0, 0, 0.4);
+      transition: opacity 1s ease-out;
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    @include mobile {
+      display: block;
+    }
+  }
 }

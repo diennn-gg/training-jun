@@ -1,78 +1,126 @@
 html {
-    font-family: Plus Jakarta Sans;
-    font-style: normal;
+  font-family: Plus Jakarta Sans;
+  font-style: normal;
 }
 
-body, h1, h2, h3, p {
-    margin: 0;
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
 
-*, *:before, *:after {
-    margin: 0;
-    padding: 0;
-    -moz-box-sizing: border-box;
-        box-sizing: border-box;
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
 }
 
 .btn-primary {
-    display: inline-block;
-    padding: 12px;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    text-decoration: none;
-    border-radius: 44px;
-    border: $border-primary;
-    background: $white-color;
-    
-    color: $text-primary;
+  display: inline-block;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  border-radius: 44px;
+  border: $border-primary;
+  background: $white-color;
+
+  color: $text-primary;
 }
 .btn-primary.active,
 .btn-primary:hover {
-    box-shadow: $box-shadow;
-    transition: box-shadow .1s;
+  box-shadow: $box-shadow;
+  transition: box-shadow 0.1s;
 }
 
 .card {
-    border-radius: 8px;
-    border: $border-primary;
-    background: $white-color;
+  border-radius: 8px;
+  border: $border-primary;
+  background: $white-color;
+}
+
+// btn search
+.search {
+    position: relative;
+    &__input {
+      width: 552px;
+      padding: 10px 48px;
+      border-radius: 8px;
+      border: 1px solid $black-color;
+      outline: none;
+      margin: 14px 0;
+      @include tablet_portrait {
+        width: 300px;
+      }
+    }
+    &__button[type="submit"] {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      text-indent: -999px;
+      overflow: hidden;
+      width: 48px;
+      height: 38px;
+      padding: 0;
+      margin: 0;
+      border: 1px solid transparent;
+      border-radius: inherit;
+      background: transparent
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
+        no-repeat center;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+    &__button[type="submit"]:hover {
+      opacity: 1;
+    }
 }
 
 //---------Swiper---------
 .swiper {
-    &-button-prev,
-    &-button-next {
-        display: none;
-    }
-    &-pagination {
-        position: static;
-        margin-top: 34px;
+  &-button-prev,
+  &-button-next {
+    display: none;
+  }
+  &-pagination {
+    position: static;
+    margin-top: 34px;
 
-        &-bullet {
-            width: 8px;
-            background: $white-color;
-            opacity: unset;
-            
-            &-active {
-                opacity: unset;
-                background: $yellow-color;
-            }
-        }
+    &-bullet {
+      width: 8px;
+      background: $white-color;
+      opacity: unset;
+
+      &-active {
+        opacity: unset;
+        background: $yellow-color;
+      }
     }
-    &-horizontal > &-pagination-bullets &-pagination-bullet, 
-    &-pagination-horizontal &-pagination-bullets &-pagination-bullet {
-        margin: 0 16px;
-    }
+  }
+  &-horizontal > &-pagination-bullets &-pagination-bullet,
+  &-pagination-horizontal &-pagination-bullets &-pagination-bullet {
+    margin: 0 16px;
+  }
 }
 
 //---------Scroll Button---------
 .scroll-button {
-    position: fixed;
-    bottom: 10%;
-    right: 5%;
-    padding: 10px 12px;
-    border-radius: 48px;
-    cursor: pointer;
-    background: var(--text-primary, #252427);
+  position: fixed;
+  bottom: 5%;
+  right: 3%;
+  padding: 10px 12px;
+  border-radius: 48px;
+  z-index: 9;
+  cursor: pointer;
+  background: var(--text-primary, #252427);
 }

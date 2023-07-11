@@ -1,75 +1,127 @@
 @mixin min($bp, $max: "null", $device: "screen") {
-    @if $max == "null" {
-        @media only #{$device} and (min-width: #{$bp}) {
-            @content;
-        }
+  @if $max == "null" {
+    @media only #{$device} and (min-width: #{$bp}) {
+      @content;
     }
-    @else {
-        @media only #{$device} and (min-width: #{$bp}) and (max-width: #{$max}) {
-            @content;
-        }
+  } @else {
+    @media only #{$device} and (min-width: #{$bp}) and (max-width: #{$max}) {
+      @content;
     }
+  }
 }
 
 @function bp($bp) {
-    @return map-get($breakpoints, $bp);
+  @return map-get($breakpoints, $bp);
 }
 
 $breakpoints: (
-    na: 0px,
-    // For BS grid
-    xs: 320px,
-    // Smartphone
-    sm: 600px,
-    // Tablets
-    md: 900px,
-    // Tablets Landscape and small desktops
-    lg: 1200px,
-    // Desktops
-    xl: 1800px,
-    // Large Desktop
+  na: 0px,
+  // For BS grid
+  xs: 320px,
+  // Smartphone
+  sm: 600px,
+  // Tablets
+  md: 900px,
+  // Tablets Landscape and small desktops
+  lg: 1200px,
+  // Desktops
+  xl: 1800px,
+  // Large Desktop
 );
 
 @function container($container-size, $true-val: false) {
-    @return map-get($container-sizes, $container-size);
+  @return map-get($container-sizes, $container-size);
 }
 
 $container-sizes: (
-    sm: map-get($breakpoints, sm) - 30px,
-    md: map-get($breakpoints, md) + 92px,
-    lg: map-get($breakpoints, lg) - 28px,
-    xl: map-get($breakpoints, xl) - 400px
+  sm: map-get($breakpoints, sm) + 150px,
+  md: map-get($breakpoints, md) - 10px,
+  lg: map-get($breakpoints, lg) - 28px,
+  xl: map-get($breakpoints, xl) - 400px,
 );
 
 .container {
-    padding-right: 1rem;
-    padding-left: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 
-    &:not(.is-fluid) {
-        margin: 0 auto;
+  &:not(.is-fluid) {
+    margin: 0 auto;
 
-        @each $bp, $container-size in $container-sizes {
-            @include min(#{bp(#{$bp})}) {
-                width: 100%;
-                max-width: container(#{$bp});
-            }
-        }
+    @each $bp, $container-size in $container-sizes {
+      @include min(#{bp(#{$bp})}) {
+        width: 100%;
+        max-width: container(#{$bp});
+      }
     }
+  }
 }
 
 @each $bp, $container-size in $container-sizes {
-    .container-#{$bp} {
-        margin: 0 auto;
-        padding-right: 1rem;
-        padding-left: 1rem;
-        width: 100%;
+  .container-#{$bp} {
+    margin: 0 auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    width: 100%;
 
-        $i: index($container-sizes, $bp $container-size);
+    $i: index($container-sizes, $bp $container-size);
 
-        @for $j from $i through length($container-sizes) {
-            @include min(#{bp(nth(nth($container-sizes, $j), 1))}) {
-                max-width: container(#{nth(nth($container-sizes, $j), 1)});
-            }
-        }
+    @for $j from $i through length($container-sizes) {
+      @include min(#{bp(nth(nth($container-sizes, $j), 1))}) {
+        max-width: container(#{nth(nth($container-sizes, $j), 1)});
+      }
     }
+  }
+}
+
+$mobile-width: 480px;
+$tablet-width: 768px;
+$desktop-width: 992px;
+$tablet-land-width: 1024px;
+$tablet-mobile: 1200px;
+$desktop-width: 1280px;
+
+@mixin mobile-s {
+  @media (max-width: #{$mobile-width}) {
+    @content;
+  }
+}
+// <768
+@mixin mobile {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+// >768
+@mixin min_tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+// 768-992
+@mixin tablet_portrait {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$tablet-land-width - 1px}) {
+    @content;
+  }
+}
+// 992-1024
+@mixin tablet_landscape {
+  @media (max-width: #{$tablet-land-width - 1px}) {
+    @content;
+  }
+}
+@mixin tablet_mobile {
+  @media (max-width: #{$tablet-mobile}) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+// 1024-1280
+@mixin desktop {
+  @media (min-width: #{$tablet-land-width}) and (max-width: #{$desktop-width}) and (orientation: Landscape) {
+    @content;
+  }
 }
