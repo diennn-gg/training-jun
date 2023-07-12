@@ -43,6 +43,7 @@ function Banner () {
                         slidesPerView={5}
                         slidesPerGroup={5}
                         spaceBetween={12}
+                        observer={true}
                         loop={true}
                         pagination={{
                             clickable: true,
@@ -55,7 +56,26 @@ function Banner () {
                         onBeforeInit={(swiper) => {
                             swiper.params.navigation.prevEl = btnPrev.current;
                             swiper.params.navigation.nextEl = btnNext.current;
-                       }}
+                        }}
+                        breakpoints={{
+                            0: {
+                                slidesPerView: 1,
+                                slidesPerGroup: 1,
+                                pagination: ' '
+                            },
+                            480: {
+                              slidesPerView: 2,
+                              slidesPerGroup: 2
+                            },
+                            768: {
+                                slidesPerView: 3,
+                                slidesPerGroup: 3
+                            },
+                            1200: {
+                              slidesPerView: 5,
+                              slidesPerGroup: 5
+                            },
+                        }}
                         modules={[Pagination, Navigation]}
                     >
                         {

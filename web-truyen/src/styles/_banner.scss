@@ -30,6 +30,7 @@
   &-list {
     position: relative;
     margin: 24px  0;
+    cursor: pointer;
 
     .card {
       padding: 24px 28px;
@@ -99,6 +100,7 @@
       border-radius: 48px;
       border: 1px solid $text-primary;
       background-color: $white-color;
+      cursor: pointer;
       
       &::after {
         display: none;
@@ -108,11 +110,24 @@
     &-btn-prev {
       left: -64px;
       transform: translate(0, -50%);
+      @include desktop {
+        left: -54px;
+      }
     }
 
     &-btn-next {
       right: -64px;
-      transform: translate(0, -50%) scaleX(-1);;
+      transform: translate(0, -50%) scaleX(-1);
+      @include desktop {
+        right: -54px;
+      }
+    }
+
+    &-btn-prev,
+    &-btn-next {
+      @include tablet {
+        display: none;
+      }
     }
   }
 }
