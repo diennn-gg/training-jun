@@ -1,4 +1,4 @@
-import {ReactComponent as SvgAward} from '../../images/award-sm.svg'
+import {ReactComponent as SvgAward} from '../../images/icons/award-sm.svg'
 
 function CardBanner ( {story}) {
     const topMonth = 1;
@@ -11,7 +11,7 @@ function CardBanner ( {story}) {
             <div>
                 <img src={story.image} alt={'top ' + story.id + ' story'}/>
                 <div className="card-info">
-                    <a href="/#" className="card-info__name">{story.name}</a>
+                    <p className="card-info__name">{story.name}</p>
                     <span className="card-info__view">
                         32 M lượt xem
                         <svg className="card-info__view-icon" xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="none">

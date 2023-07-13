@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link } from 'react-router-dom'
 import { Pagination, Navigation } from 'swiper/modules';
 import CardBanner from '../card/CardBanner';
-import { ReactComponent as SvgArrowButton} from '../../images/arrow-button-slide.svg'
+import { ReactComponent as SvgArrowButton} from '../../images/icons/arrow-button-slide.svg'
 import { topMonth } from '../../data/data';
 
 function Banner () {
@@ -32,9 +33,9 @@ function Banner () {
                         <span className="banner-head__title-text">Bảng xếp hạng</span>
                     </div>
                     <div className="banner-head__link">
-                        <a className="btn-primary active" href="/#">Top Tháng</a>
-                        <a className="btn-primary" href="/#">Top Tuần</a>
-                        <a className="btn-primary" href="/#">Top Ngày</a>
+                        <Link className="btn-category active" to="/detail">Top Tháng</Link>
+                        <Link className="btn-category" to="/detail">Top Tuần</Link>
+                        <Link className="btn-category" to="/detail">Top Ngày</Link>
                     </div>
                 </div>
                 <div className="banner-list">
@@ -80,7 +81,11 @@ function Banner () {
                     >
                         {
                             topMonth.map( (story, index) => (
-                                <SwiperSlide key={index}><CardBanner story={story}/></SwiperSlide>
+                                <SwiperSlide key={index}>
+                                    <Link to="/detail">
+                                        <CardBanner story={story}/>
+                                    </Link>
+                                </SwiperSlide>
                             ))
                         }
                     </Swiper>

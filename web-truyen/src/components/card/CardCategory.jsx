@@ -50,7 +50,6 @@ function CardCategory ({storys}) {
                     ))
                 }
             </div>
-            <div className="category__notification">Bạn đã xem đến cuối trang</div>
         </Fragment>
     )
 }

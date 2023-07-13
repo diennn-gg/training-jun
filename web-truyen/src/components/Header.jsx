@@ -1,22 +1,25 @@
 import logo from "../images/app-logo.jpg";
+import { Link } from 'react-router-dom'
 
 function Header() {
   return (
-    <header className="Header">
-      <div className="Header-logo">
-        <img src={logo} alt="logo" />
+    <header className="header">
+      <div className="header-logo">
+        <Link className="header-logo__link" to="/">
+          <img src={logo} alt="logo" />
+        </Link>
       </div>
-      <div className="Header-search search">
-        <button className="search__button" type="submit">Search</button>
+      <div className="header-search input-primary">
+        <button className="input-primary__button btn-search" type="submit">Search</button>
         <input
-          className="Header-search__input search__input"
+          className="header-search__input input-primary__box"
           placeholder="Tìm kiếm tên truyện"
           type="search"
         />
       </div>
-      <div className="Header-button">
-        <a href="/#" className="Header-button__link">Đăng nhập</a>
-        <a href="/#" className="Header-button__link">Đăng ký</a>
+      <div className="header-button">
+        <Link to="/" className="header-button__link">Đăng nhập</Link>
+        <Link to="/" className="header-button__link">Đăng ký</Link>
       </div>
       <div className="hamburger-menu">
         <input id="menu__toggle" className="hamburger-menu__toggle" type="checkbox" />
@@ -24,19 +27,19 @@ function Header() {
         <label className="overlay" htmlFor="menu__toggle"></label>
 
         <ul className="hamburger-menu__box">
-          <li className="search">
-            <button className="search__button" type="submit">Search</button>
+          <li className="input-primary">
+            <button className="input-primary__button btn-search" type="submit">Search</button>
             <input
-              className="search__input"
+              className="input-primary__box"
               placeholder="Tìm kiếm tên truyện"
               type="search"
             />
           </li>
           <li>
-            <a href="/#" className="menu__item">Đăng nhập</a>
+            <Link to="/" className="menu__item">Đăng nhập</Link>
           </li>
           <li>
-            <a href="/#" className="menu__item">Đăng ký</a>
+            <Link to="/" className="menu__item">Đăng ký</Link>
           </li>
         </ul>
       </div>

@@ -1,13 +1,15 @@
 import './App.scss';
 import Header from './components/Header'
-import Content from './components/Content'
+import { Outlet } from 'react-router-dom'
 import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Header/>
-      <Content/>
+      <div className="main">
+        <Outlet/>
+      </div>
       <Footer/>
     </div>
   );
