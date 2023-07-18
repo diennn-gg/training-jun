@@ -21,10 +21,99 @@ p {
 }
 
 img {
+  display: block;
   width: 100%;
 }
 
-.btn-primary {
+a {
+  text-decoration: none;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main {
+  flex: 1;
+}
+
+// ---------Text primary---------
+.text-regular {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: $gray-color;
+}
+.text-sm-medium {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: $text-primary;
+}
+.text-xs-bold {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  color: $black-color;
+}
+.text-lg-bold {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  color: $text-primary;
+}
+.text-bold {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+  color: $text-primary;
+  &-sm {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: $text-primary;
+  }
+  &-md {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: $black-color;
+  }
+}
+
+// ---------Fake Bootstrap---------
+.d-flex {
+  display: flex;
+}
+.align-item-center {
+  align-items: center;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.flex-direction-row {
+  flex-direction: row;
+}
+.flex-direction-col {
+  flex-direction: column;
+}
+.p-10 {
+  padding: 10px;
+}
+
+.space-icon-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+// ---------Btn primary---------
+.btn-category {
   display: inline-block;
   padding: 12px;
   font-size: 14px;
@@ -34,56 +123,90 @@ img {
   border-radius: 44px;
   border: $border-primary;
   background: $white-color;
-
   color: $text-primary;
 }
-.btn-primary.active,
-.btn-primary:hover {
+.btn-category.active,
+.btn-category:hover {
   box-shadow: $box-shadow;
   transition: box-shadow 0.1s;
 }
+.btn-link {
+  padding: 12px 16px;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  &--black {
+    background: $text-primary;
+    color: $yellow-color;
 
+    &:hover {
+      background: $yellow-color;
+      color: $text-primary;
+    }
+  }
+  &--yellow {
+    color: $text-primary;
+    border: $border-primary;
+    background: $yellow-color;
+
+    &:hover {
+      background: $text-primary;
+      color: $yellow-color;
+    }
+  }
+}
+
+// ---------Btn Card---------
 .card {
   border-radius: 8px;
   border: $border-primary;
   background: $white-color;
 }
 
-// btn search
-.search {
-    position: relative;
-    &__input {
-      width: 552px;
-      padding: 10px 48px;
-      border-radius: 8px;
-      border: 1px solid $black-color;
-      outline: none;
-      margin: 14px 0;
-      @include tablet_portrait {
-        width: 300px;
-      }
+// ---------Input Primary---------
+.input-primary {
+  position: relative;
+  &__box {
+    width: 552px;
+    padding: 10px 48px;
+    border-radius: 8px;
+    border: 1px solid $black-color;
+    outline: none;
+    margin: 14px 0;
+    @include tablet_portrait {
+      width: 300px;
     }
-    &__button[type="submit"] {
-      position: absolute;
-      top: 50%;
-      transform: translate(0, -50%);
-      text-indent: -999px;
-      overflow: hidden;
-      width: 48px;
-      height: 38px;
-      padding: 0;
-      margin: 0;
-      border: 1px solid transparent;
-      border-radius: inherit;
+  }
+  &__button[type="submit"] {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-indent: -999px;
+    overflow: hidden;
+    width: 48px;
+    height: 38px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    cursor: pointer;
+    opacity: 0.7;
+
+    &.btn-search {
       background: transparent
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
-        no-repeat center;
-      cursor: pointer;
-      opacity: 0.7;
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
+      no-repeat center;
     }
-    &__button[type="submit"]:hover {
-      opacity: 1;
+    &.btn-send {
+      background: transparent
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-send' viewBox='0 0 16 16'%3E%3Cpath d='M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z'/%3E%3C/svg%3E")
+      no-repeat center;
     }
+  }
+  &__button[type="submit"]:hover {
+    opacity: 1;
+  }
 }
 
 //---------Swiper---------
@@ -123,4 +246,31 @@ img {
   z-index: 9;
   cursor: pointer;
   background: var(--text-primary, #252427);
+}
+
+//---------Page 404---------
+.page-found {
+  padding: 40px 0;
+  background: #fff;
+
+  &__bg {
+    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 500px;
+    background-position: center;
+
+    &-title {
+      font-size: 80px;
+
+      @include tablet_mobile {
+        font-size: 54px;
+      }
+    }
+
+    &-link {
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
 }

@@ -1,9 +1,9 @@
 import React from "react";
-import Banner from "./content/Banner";
-import Category from "./content/Category";
-import ScrollButton from './js/ScrollButton';
+import Banner from "./Banner";
+import Category from "./Category";
+import ScrollButton from '../js/ScrollButton';
  
-function Content () {
+function Homepage () {
     return (
         <div className="Content">
             <Banner/>
@@ -13,4 +13,4 @@ function Content () {
     )
 }
 
-export default Content;
+export default Homepage;
