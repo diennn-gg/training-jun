@@ -14,6 +14,7 @@
       width: 31.993%;
       padding: 20px 32px;
       border: $border-primary;
+      overflow: hidden;
 
       @include tablet_mobile {
         padding: 20px 18px;
@@ -30,26 +31,42 @@
 
       &-list {
         margin-top: 32px;
+        height: 100%;
         
+        & > :first-child {
+          padding-bottom: 16px;
+        }
         & > :last-child {
-          margin-top: 16px;
-          list-style: none;
-          overflow: hidden;
-          border-radius: 8px;
-          border: $border-primary;
-          
-          & > * {
-            &:nth-child(even) {
-              background: #F0EDF5;
-            }
-            & > * {
-              text-decoration: none;
-            }
-          }
-          & > *:not(:last-child) {
-            border-bottom: $border-primary;
+          position: relative;
+          height: 100%;
+          overflow-y: scroll;
 
+          &::-webkit-scrollbar{
+            display: none;
           }
+
+          & > * {
+            position: absolute;
+            width: 100%;
+            list-style: none;
+            overflow: hidden;
+            border-radius: 8px;
+            border: $border-primary;
+
+            & > * {
+              &:nth-child(even) {
+                background: #F0EDF5;
+              }
+              & > * {
+                text-decoration: none;
+              }
+            }
+            & > *:not(:last-child) {
+              border-bottom: $border-primary;
+  
+            }
+          }
+          
         }
       }
     }
@@ -60,6 +77,8 @@
       &__heading {
         padding: 20px;
         border: $border-primary;
+        text-transform: capitalize;
+        cursor: default;
       }
       &__info {
         border: $border-primary;
@@ -72,6 +91,7 @@
         &-share {
           padding: 0 12px;
           border-right: $border-primary;
+          cursor: pointer;
 
           @include mobile {
             padding: 0 8px;
@@ -128,6 +148,7 @@
         &-status {
           padding: 20px;
           border-left: $border-primary;
+          cursor: pointer;
 
           @include tablet_mobile {
             padding: 12px;
@@ -157,6 +178,7 @@
       &__desc {
         padding: 32px;
         border: $border-primary;
+        cursor: default;
 
         @include mobile {
           padding: 16px;

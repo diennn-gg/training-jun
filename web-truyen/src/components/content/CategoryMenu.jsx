@@ -1,44 +1,53 @@
 import { useRef, useState, useEffect } from "react";
-import { storys } from "../../data/data-category";
+import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 
-const menuCategory = ['Tất cả', '❤ Tình yêu', '🦄 Fantasy', '😆 Hài hước', '🥷🏻 Action', '😱 Thriller', '🔞 Người lớn', '🧟‍♀️ Kinh dị', '🕵🏻‍♂️ Trinh thám', '🇻🇳 Truyện Việt'];
 const menuDropDown = ['🎭 Drama', '👨‍❤️‍👨Đam mỹ', '🧚🏻Cartoon', '🏛 Cổ đại', '🌃 Slice of life', '⚽️ Sport', '👩🏻‍🏫️ Học đường', '👨🏻‍🍳 Cooking', '🧙🏻‍♀️ Mystery', '🦸🏻 Siêu nhân', '🧬 Khoa học viễn tưởng'];
 
 function CategoryMenu({listMenuCateSetter}) {
   const menuRef = useRef([]);
   const [active, setActive] = useState(0);
-  const [listMenu, setListMenu] = useState(storys);
+  const [categories, setCategories] = useState([]);
+  const showToastError = (error, toastId) => {
+    toast.error(`[Fetch categories has an error]: ${error.message}`, {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      toastId
+    })
+  };
 
   useEffect(() => {
-    listMenuCateSetter(listMenu);
-  }, [listMenuCateSetter, listMenu]);
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+    const getCategories = async () => {
+      const toastId = 'fetched-categories';
+      try {
+        const result = await axios.get(`${API_BASE_URL}/category/categories?page=1&limit=12`);
+        setCategories(result.data.results);
+      } catch (error) {
+        showToastError(error, toastId)
+      }
+    };
+    getCategories();
+  }, []);
 
   const handleClick = (index) => {
-    const thisText = menuRef.current[index].textContent;
-
-    // setActive for button category
+    const thisCate = menuRef.current[index].id;
+    listMenuCateSetter(thisCate);
     setActive(index);
-    // Filter list
-    setListMenu(
-      storys.filter((item) => {
-        if (thisText === menuCategory[0]) return true;
-        return item.category === thisText;
-      })
-    );
   };
-  
+
   return (
     <div className="category-menu">
-      {menuCategory.map((item, index) => (
+      {categories.map((item, index) => (
         <span
           key={index}
+          id={index === 0 ? 'all' : item.url}
           ref={(el) => (menuRef.current[index] = el)}
           onClick={() => handleClick(index)}
           className={`category-menu__btn btn-category ${
             active === index ? "active" : ""
           }`}
         >
-          {item}
+          {index === 0 ? 'Tất cả' : item.name}
         </span>
       ))}
       <span className="category-menu__btn btn-category category-dropdown">
@@ -69,6 +78,7 @@ function CategoryMenu({listMenuCateSetter}) {
           ))}
         </ul>
       </span>
+      <div className="toast-container"><ToastContainer limit={2}/></div>
     </div>
   );
 }
