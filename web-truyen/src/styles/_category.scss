@@ -7,13 +7,13 @@
     padding: 20px 0;
 
     &__btn {
-      margin: 0 3px;
+      margin: 0 4px;
       font-size: 14px;
       font-weight: 500;
       line-height: 20px;
-      word-spacing: -1.5px;
       background: transparent;
       cursor: pointer;
+      white-space: nowrap;
 
       &:not(.active) {
         border-color: transparent;
@@ -126,6 +126,16 @@
     .card {
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      & > * {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
       &-info {
         display: flex;
         flex-direction: column;
@@ -138,6 +148,7 @@
           line-height: 24px;
           color: $text-primary;
           margin-bottom: 12px;
+          text-transform: capitalize;
           flex: 1;
         }
 
@@ -178,8 +189,10 @@
           display: block;
           cursor: pointer;
 
-          &.active > * {
-            fill: $purple-color;
+          &.active {
+            .card-status__reaction-svg {
+              fill: $purple-color;
+            }
           }
         }
         &__view {

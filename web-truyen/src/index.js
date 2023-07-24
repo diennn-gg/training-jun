@@ -4,7 +4,8 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './index.scss';
 import App from './App';
 import HomePage from './components/content/HomePage';
-import Detail from './components/content/Detail';
+import DetailPage from './components/content/DetailPage';
+import ChapterPage from './components/content/ChapterPage';
 import NotFound from './components/NotFound';
 import reportWebVitals from './reportWebVitals';
 
@@ -15,7 +16,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />}/>
-          <Route path="/detail" element={<Detail />}/>
+          <Route path="/comic/:comicId" exact element={<DetailPage />}/>
+          <Route path="/comic/:comicId/:chapterNumber/:chapterId" exact element={<ChapterPage />}/>
           <Route path="*" element={<NotFound />}/>
         </Route>
       </Routes>

@@ -126,6 +126,11 @@ $desktop-width: 1280px;
     @content;
   }
 }
+@mixin min_desktop {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
 // 1024-1280
 @mixin desktop {
   @media (min-width: #{$tablet-land-width}) and (max-width: #{$desktop-width}) and (orientation: Landscape) {
