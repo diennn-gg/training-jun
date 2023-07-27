@@ -17,19 +17,27 @@ function CardCategory({ comics }) {
       <div className="category-card">
         {comics.map((comic, index) => (
           <div key={index} className="category-card__item card">
-            <Link to={`/comic/${comic.url}`}>
-              <img
-                src={`${API_BASE_URL_IMAGE}?url=${encodeURIComponent(comic.avatar)}`}
-                alt={`Image comic ${comic.name}`}
-              />
+            <div>
+              <Link to={`/comic/${comic.url}`}>
+                <img
+                  src={`${API_BASE_URL_IMAGE}?url=${encodeURIComponent(comic.avatar)}`}
+                  alt={comic?.name ?? "Image comic"}
+                />
+              </Link>
               <div className="card-info">
-                <div className="card-info__name">{comic.name || ""}</div>
+                <div className="card-info__name">
+                  <Link className="card-info__name-link" to={`/comic/${comic.url}`}>
+                    {comic?.name ?? "Name Comic"}
+                  </Link>
+                </div>
                 <div className="card-info__chapter">
                   {comic.chapters.map((chapter, index) => (
                     <div key={index}>
-                      <span className="card-info__chapter-number">
-                        Chapter {chapter.chapter}
-                      </span>
+                      <Link className="card-info__chapter-number" to={`/comic/${comic.url}/chapter-${chapter.chapter}/${chapter._id}`}>
+                        <span>
+                          Chapter {chapter.chapter}
+                        </span>
+                      </Link>
                       <p className="card-info__chapter-update">2 phút trước</p>
                     </div>
                   ))}
@@ -83,7 +91,7 @@ function CardCategory({ comics }) {
                   </svg>
                 </div>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>
