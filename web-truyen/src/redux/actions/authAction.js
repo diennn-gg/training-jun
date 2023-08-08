@@ -30,8 +30,8 @@ export const loginUser = createAsyncThunk(
   async ({ email, password }, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await axiosPublic.post(`/auth/login`,{ email, password });
-      Cookies.set('token', data.tokens.access.token);
-      Cookies.set('refreshToken', data.tokens.refresh.token);
+      Cookies.set('token', data.tokens.access.token, { expires: 1});
+      Cookies.set('refreshToken', data.tokens.refresh.token, { expires: 30});
       history.navigate('/');
       return data
     } catch (error) {

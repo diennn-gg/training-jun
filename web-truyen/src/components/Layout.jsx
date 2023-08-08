@@ -6,25 +6,22 @@ import Footer from './Footer'
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { setDataUser } from '../redux/reducers/authReducer';
-
 import { axiosPublic } from "./js/AxiosPublic";
 import { showToastError } from "./js/Toast";
-import { getToken, removeToken } from "./js/Cookies";
+import { getToken } from "./js/Cookies";
 
 function Layout() {
-  const token = getToken() ?? null;
+  const token = getToken();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if(token) {
       ( async () => {
-        const toastId = 'get_me_id';
         try {
-          const {data} = await axiosPublic.get('/auth/me');
+          const { data } = await axiosPublic.get('/auth/me');
           dispatch(setDataUser(data));
         } catch (error) {
-          showToastError(`[Get User]:${error.message}`, toastId);
-          removeToken();
+          showToastError(`[Get User]:${error.message}`, 'get_me_id');
         }
       })();
     }
