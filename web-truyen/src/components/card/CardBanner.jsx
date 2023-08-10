@@ -11,9 +11,9 @@ function CardBanner ( {comic, rank}) {
                 Top {rank}
             </div>
             <div>
-                <img className="card-image" src={`${API_BASE_URL_IMAGE}?url=${encodeURIComponent(comic.avatar)}`} alt={comic.name}/>
+                <img className="card-image" src={`${API_BASE_URL_IMAGE}?url=${encodeURIComponent(comic.avatar)}`} alt={comic?.name ?? "Image comic"}/>
                 <div className="card-info">
-                    <p className="card-info__name">{comic.name || ""}</p>
+                    <p className="card-info__name">{comic?.name ?? "Image comic"}</p>
                     <span className="card-info__view">
                         {comic.view} lượt xem
                         <svg className="card-info__view-icon" xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="none">

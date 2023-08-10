@@ -3,10 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import { Pagination, Navigation } from "swiper/modules";
 import CardBanner from "../card/CardBanner";
-import { ToastContainer, toast } from 'react-toastify';
+import { showToastError } from "../js/Toast";
 import Loading from "../Loading";
 import { ReactComponent as SvgArrowButton } from "../../images/icons/arrow-button-slide.svg";
-import axios from "axios";
+import { axiosPublic } from "../js/AxiosPublic";
 
 const topList = ['Month', 'Week', 'Day'];
 
@@ -18,24 +18,15 @@ function Banner() {
   const [comics, setComics] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const showToastError = (error, toastId) => {
-    toast.error(`Fetch top ${top} has an error: ${error.message}`, {
-      position: toast.POSITION.BOTTOM_RIGHT,
-      toastId
-    })
-  };
-
   useEffect(() => {
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
     const fetchComic = async () => {
       const toastId = 'fetched-comic';
       setLoading(true);
       try {
-        const result = await axios.get(`${API_BASE_URL}/comic?page=1&limit=15&viewer=desc&top=${top}`);
+        const result = await axiosPublic.get(`/comic?page=1&limit=15&viewer=desc&top=${top}`);
         setComics(result.data.results);
       } catch (error) {
-        showToastError(error, toastId)
+        showToastError(`[Fetch Comic Banner]:${error.message}`, toastId)
       }
       setLoading(false);
     };
@@ -173,7 +164,6 @@ function Banner() {
               ))}
             </Swiper>
           )}
-          <div className="toast-container"><ToastContainer limit={2}/></div>
           <div className="banner-list-btn-prev" ref={btnPrev}>
             <SvgArrowButton />
           </div>

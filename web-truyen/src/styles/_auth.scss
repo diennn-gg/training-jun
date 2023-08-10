@@ -1,0 +1,162 @@
+.auth-form {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(-225deg, #fff 0%, #daccff 100%);
+  background-image: linear-gradient(to top, #fff 0%, #daccff 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  opacity: 0.95;
+
+  @include mobile-s {
+    & > :first-child {
+      width: 100%;
+    }
+  }
+
+  .form {
+    width: 450px;
+    min-height: 500px;
+    height: auto;
+    border-radius: 8px;
+    margin: 24px auto;
+    box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+    padding: 24px 32px;
+    background-image: linear-gradient(-225deg, #fff 50%, #daccff 50%);
+
+    @include mobile-s {
+      width: 100%;
+      height: fit-content;
+      min-height: 480px;
+      padding: 12px 16px;
+    }
+
+    &-head {
+      margin-bottom: 42px;
+      text-align: center;
+      cursor: default;
+
+      @include mobile-s {
+        margin: 12px 0 24px;
+      }
+      h2 {
+        font-size: 48px;
+        color: #3e403f;
+      }
+      p {
+        letter-spacing: 0.05em;
+        font-size: 14px;
+        @include mobile-s {
+          font-size: 12px;
+        }
+      }
+    }
+    .field-set {
+      margin: 0 24px;
+
+      @include mobile-s {
+        margin: 0 12px;
+      }
+    }
+    &-group {
+      position: relative;
+      width: 100%;
+      margin-bottom: 12px;
+      & > :first-child {
+        font-size: 14px;
+        text-transform: capitalize;
+
+        @include mobile-s {
+          font-size: 12px;
+        }
+      }
+    }
+    // Input
+    &-input {
+      width: 100%;
+      padding: 12px 16px;
+      outline: none;
+      border: none;
+      font-size: 16px;
+      font-family: "Abel", sans-serif;
+      color: #5e6472;
+      border-radius: 8px;
+      transition: 0.2s linear;
+      border: 1px solid #daccff;
+
+      @include mobile-s {
+        font-size: 12px;
+      }
+
+      &.input-error {
+        border: 1px solid $error-color;
+      }
+
+      &:focus {
+        transform: translateX(-2px);
+        border-radius: 8px;
+      }
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        background: none;
+      }
+    }
+    &-error {
+      position: absolute;
+      color: $error-color;
+      right: 0;
+    }
+    &-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 16px 24px;
+      margin: 24px 0 48px;
+      color: $text-primary;
+      background: $white-color;
+      outline: none;
+      border: none;
+      text-align: center;
+      letter-spacing: 0.05em;
+      border-radius: 8px;
+      background: $pale-blue;
+      transition: all 0.2s linear;
+      cursor: pointer;
+    }
+    @include mobile-s {
+      margin: 18px 0 24px;
+    }
+    &-btn:hover {
+      transform: translatey(3px);
+      box-shadow: none;
+    }
+    
+    &-btn:hover {
+      animation: ani9 0.4s ease-in-out infinite alternate;
+    }
+    @keyframes ani9 {
+      0% {
+        transform: translateY(3px);
+      }
+      100% {
+        transform: translateY(5px);
+      }
+    }
+    .other {
+      padding-bottom: 24px;
+      cursor: default;
+      @include mobile-s {
+        font-size: 12px;
+      }
+      &-name {
+        &:active  {
+          color: $pale-blue;
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
