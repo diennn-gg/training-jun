@@ -31,7 +31,7 @@ function DetailComic({ comic }) {
             </div>
             <div>
               <ul>
-                {comic.chapters.toReversed().map((chapter, index) => (
+                {comic.chapters.map((chapter, index) => (
                   <li
                     key={index}
                     className="d-flex justify-content-between flex-direction-row"

@@ -127,6 +127,7 @@ a {
   border: $border-primary;
   background: $white-color;
   color: $text-primary;
+  user-select: none;
 
   @include mobile-s {
     font-size: 12px;
@@ -409,11 +410,48 @@ a {
 //---------Chapter---------
 .chapter-container {
   width: 50%;
-  margin: 42px auto;
+  margin: 0 auto 42px;
 
   @include tablet_landscape {
     width: 100%;
   }
+  & .lazy-load-image-background.lazy-load-image-loaded,
+  & .chapter-image {
+    max-width: 100%;
+    height: auto!important;
+  }
+  .chapter-pagination {
+    position: relative;
+    top: 0;
+    transition: top .5s ease;
+
+    &.chapter-scroll {
+      position: fixed;
+      top: 75px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $background-category;
+      border-radius: 8px;
+      z-index: 99;
+      transition: top 1s ease;
+      animation: opa 1s ease;
+
+      @keyframes opa {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      & .pagination {
+        margin: 0;
+        padding: 4px;
+      }
+    }
+  }
+
 }
 
 //---------Pagination---------
@@ -421,10 +459,10 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 42px 0 0;
   padding: 18px 0;
   background: transparent;
   list-style: none;
+  z-index: 99;
 
   &__item,
   &__btn,
@@ -447,6 +485,21 @@ a {
 
     .pagination__link {
       padding: 8px 16px;
+
+      @include mobile {
+        padding: 6px 12px;
+      }
+      @include mobile-md {
+        padding: 4px 8px;
+      }
+      @include mobile-s {
+        padding: 4px;
+      }
+    }
+    .pagination__btn-link {
+      @include mobile-s {
+        padding: 4px;
+      }
     }
 
     &:hover {

@@ -138,7 +138,6 @@ function Banner() {
                 0: {
                   slidesPerView: 1,
                   slidesPerGroup: 1,
-                  pagination: " ",
                 },
                 480: {
                   slidesPerView: 2,

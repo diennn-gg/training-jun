@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useLayoutEffect, useRef } from "react";
 import Loading from "../Loading";
 import { history } from '../../components/js/History';
 import Pagination from "../uses/Pagination";
 import { showToastError } from "../js/Toast";
 import { axiosPublic } from "../js/AxiosPublic";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function ChapterPage() {
   const { comicId, chapterNumber, chapterId } = useParams();
@@ -12,7 +13,8 @@ function ChapterPage() {
   const [ chapter, setChapter] = useState([]);
   const [ currentPage, setCurrentPage] = useState(0);
   const [ comicChapter, setComicChapter] = useState([]);
-  const [  loading, setLoading ] = useState(false);
+  const [ loading, setLoading ] = useState(false);
+  const paginationRef = useRef();
   const API_BASE_URL_IMAGE = process.env.REACT_APP_API_BASE_URL_IMAGE;
 
   const wrapperSetChapter = useCallback(val => {
@@ -45,24 +47,40 @@ function ChapterPage() {
     localStorage.setItem(comicId, comicLocalString)
   },[chapterIdd, chapterNumber, comicId, chapter])
 
+  useLayoutEffect(() => {
+    const divAnimate = paginationRef.current.getBoundingClientRect().top;
+    const onScroll = () => {
+      if (divAnimate + 100 < window.scrollY) {
+        paginationRef.current?.classList.add("chapter-scroll");
+      } else {
+        paginationRef.current?.classList.remove("chapter-scroll");
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
       {loading ? <Loading/> : (
         <div className="chapter-container">
+          <div ref={paginationRef} className="chapter-pagination">
+            <Pagination totalPages={comicChapter?.length / 2} currentPage={currentPage} pageSetter={wrapperSetChapter}/>
+          </div>
           <div className="chapter-content">
             {
               chapter.map( (item, index) => (
-                <img
+                <LazyLoadImage
                   key={index}
                   className="chapter-image"
+                  effect='blur'
+                  width='100%'
+                  height={500}
                   src={`${API_BASE_URL_IMAGE}?url=${encodeURIComponent(item)}`}
                   alt={`img-${index} chapter-${chapterId}`}
                 />
               ))
             }
-          </div>
-          <div className="chapter-end">
-            <Pagination totalPages={comicChapter?.length / 2} currentPage={currentPage} pageSetter={wrapperSetChapter}/>
           </div>
         </div>
       )}
