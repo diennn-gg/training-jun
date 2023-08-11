@@ -2,8 +2,9 @@ import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import { getToken, setToken, getRefreshToken, setRefreshToken, removeToken } from "./Cookies";
 
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 export const axiosPublic = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL,
+  baseURL: baseURL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -14,24 +15,24 @@ axiosPublic.interceptors.request.use(
   async (config) => {
     let accessToken = getToken();
     if (accessToken) {
-      const decodedToken = jwt_decode(accessToken);
-      if(decodedToken.exp * 1000 < new Date().getTime()) {
-        const refreshToken = getRefreshToken();
-        await axiosPublic.post('auth/refresh-tokens', JSON.stringify({ refreshToken: refreshToken}))
+      const currentDate = new Date().getTime();
+      const decodedToken = jwt_decode(accessToken).exp * 1000;
+      if(decodedToken < currentDate) {
+        await axios.post(`${baseURL}/auth/refresh-tokens`, { refreshToken: getRefreshToken()})
           .then((response) => {
             accessToken = response.data.access.token;
             setToken(response.data.access.token);
             setRefreshToken(response.data.refresh.token);
           })
           .catch((e) => {
-            removeToken();
+            return config;
           })
       }
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {return Promise.reject(error)}
 );
 
 // ---------- RESPONSE -------------

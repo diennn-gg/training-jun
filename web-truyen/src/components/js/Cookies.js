@@ -7,10 +7,10 @@ export const setToken = (token) => {
   Cookies.set('token', token);
 }
 export const getRefreshToken = () => {
-  return Cookies?.get('refreshToken') ?? null;
+  return Cookies?.get('refreshToken');
 }
 export const setRefreshToken = (refresh_token) => {
-  return Cookies.set('refreshToken', refresh_token);
+  Cookies.set('refreshToken', refresh_token);
 }
 export const removeToken = () => {
   return Cookies?.remove('token');
