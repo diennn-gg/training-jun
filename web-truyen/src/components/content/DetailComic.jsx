@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import BannerDetail from "../../images/banner-detail.png";
 import avatar from "../../images/avatar.jpg";
+import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton, RedditIcon, RedditShareButton } from "react-share";
 import { ReactComponent as IconEye } from "../../images/icons/icon-eye.svg";
 
 function DetailComic({ comic }) {
+  const hrefCurrent = window.location.href;
   const comicLocal = localStorage.getItem(comic.url);
   const comicParse = JSON.parse(comicLocal);
   const readBegin = `/comic/${comic.url}/chapter-${comic.chapters[0].chapter}/${comic.chapters[0]._id}`;
@@ -73,8 +75,8 @@ function DetailComic({ comic }) {
                   ></path>
                 </svg>
               </div>
-              <div>
-                <svg
+              <div className="detail-main__info-share-btn">
+                <svg className="detail-main__info-share-btn-icon"
                   xmlns="http://www.w3.org/2000/svg"
                   width="25"
                   height="24"
@@ -89,6 +91,17 @@ function DetailComic({ comic }) {
                     d="M18.5 8a3 3 0 100-6 3 3 0 000 6zM6.5 15a3 3 0 100-6 3 3 0 000 6zM18.5 22a3 3 0 100-6 3 3 0 000 6zM9.09 13.51l6.83 3.98M15.91 6.51l-6.82 3.98"
                   ></path>
                 </svg>
+                <div className="detail-main__info-share-btn-wrap">
+                  <FacebookShareButton url={hrefCurrent}>
+                    <FacebookIcon size={32} round/>
+                  </FacebookShareButton>
+                  <TwitterShareButton url={hrefCurrent}>
+                    <TwitterIcon size={32} round/>
+                  </TwitterShareButton>
+                  <RedditShareButton url={hrefCurrent}>
+                    <RedditIcon size={32} round/>
+                  </RedditShareButton>
+                </div>
               </div>
             </div>
             <div className="detail-main__info-cat d-flex align-item-center">

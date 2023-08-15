@@ -6,6 +6,8 @@ const menuDropDown = ['🎭 Drama', '👨‍❤️‍👨Đam mỹ', '🧚🏻Ca
 
 function CategoryMenu({listMenuCateSetter}) {
   const menuRef = useRef([]);
+  const menuDropRef = useRef([]);
+  const scrollRef = useRef();
   const [active, setActive] = useState(0);
   const [categories, setCategories] = useState([]);
 
@@ -20,6 +22,7 @@ function CategoryMenu({listMenuCateSetter}) {
       }
     };
     getCategories();
+    scrollMenu();
   }, []);
 
   useEffect(() => {
@@ -32,10 +35,19 @@ function CategoryMenu({listMenuCateSetter}) {
     setActive(index);
   };
 
+  const scrollMenu = () => {
+    scrollRef.current.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      scrollRef.current.scrollBy({
+        left: e.deltaY < 0 ? -30 : 30,
+      });
+    });
+  };
+
   return (
     <>
       <div className="category-menu">
-        <div className="category-menu__scroll">
+        <div className="category-menu__scroll" ref={scrollRef}>
           {categories.map((item, index) => (
             <span
               key={index}
@@ -69,7 +81,7 @@ function CategoryMenu({listMenuCateSetter}) {
                 />
               </svg>
             </span>
-            <ul className="category-dropdown__list">
+            <ul className="category-dropdown__list" ref={menuDropRef}>
             {menuDropDown.map((item, index) => (
               <li key={index} className="category-dropdown__list-item">
                 <span>{item}</span>
